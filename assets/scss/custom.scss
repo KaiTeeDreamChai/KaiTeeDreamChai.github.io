@@ -15,6 +15,7 @@
   --bh-blue: #1d4e89;
   --bh-yellow: #f2b705;
   --bh-ink: #14213d;
+  --bh-shadow: rgba(20, 33, 61, 0.9);
 
   --accent-color: #d7263d;
   --accent-color-darker: #b01d31;
@@ -39,6 +40,9 @@ body[data-scheme="dark"] {
   --card-text-color-main: #f4f1e8;
   --card-text-color-secondary: #b9c2cf;
   --card-separator-color: rgba(244, 241, 232, 0.18);
+  /* 深色下把墨色翻成暖白，否则描边和硬阴影会「消失」在黑底里 */
+  --bh-ink: #e9e6dc;
+  --bh-shadow: rgba(233, 230, 220, 0.25);
 }
 
 /* ---------- 站名：红圆点前缀 ---------- */
@@ -79,7 +83,7 @@ body[data-scheme="dark"] {
 .article-list article {
   border: 2px solid var(--bh-ink);
   border-radius: 2px;
-  box-shadow: 5px 5px 0 0 rgba(20, 33, 61, 0.9);
+  box-shadow: 5px 5px 0 0 var(--bh-shadow);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
   background: var(--card-background);
 }
