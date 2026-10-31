@@ -17,6 +17,10 @@
   --bh-ink: #14213d;
   --bh-shadow: rgba(20, 33, 61, 0.9);
   --bh-edge: #1d4e89;
+  /* 标签多色描边用的三支色 */
+  --chip-red: #d7263d;
+  --chip-blue: #1d4e89;
+  --chip-yellow: #cf9b00;
 
   --accent-color: #d7263d;
   --accent-color-darker: #b01d31;
@@ -45,6 +49,9 @@ body[data-scheme="dark"] {
   --bh-ink: #e9e6dc;
   --bh-shadow: rgba(233, 230, 220, 0.25);
   --bh-edge: #2f6fb8;
+  --chip-red: #ff5a6e;
+  --chip-blue: #4c8bd8;
+  --chip-yellow: #f2b705;
 }
 
 /* ---------- 站名：红圆点前缀 ---------- */
@@ -133,51 +140,70 @@ body[data-scheme="dark"] {
   );
 }
 
-/* ---------- 分类/标签：小色块（描边 + 硬影），和卡片同一套语言 ---------- */
+/* ---------- 分类/标签：多色描边 + 错位硬影，纯平移，不旋转 ---------- */
 .article-category a,
 .article-tags a,
 .tagCloud-tags a {
+  --chip: var(--bh-ink);
+
   border-radius: 999px;
-  border: 1.5px solid var(--bh-ink);
+  border: 2px solid var(--chip);
   padding: 3px 12px;
   font-size: 0.78em;
   line-height: 1.6;
   background-color: var(--card-background);
   color: var(--card-text-color-main);
   display: inline-block;
-  /* 与卡片一致的错位硬影：抬起来是一块实体，不是一层描边 */
-  box-shadow: 3px 3px 0 0 var(--bh-edge);
-  transform-origin: center bottom;
+  box-shadow: 3px 3px 0 0 var(--chip);
   backface-visibility: hidden;
-  will-change: transform;
+  will-change: transform, box-shadow;
   transition:
     background-color 0.16s ease,
     color 0.16s ease,
     border-color 0.16s ease,
-    box-shadow 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
-    transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow 0.24s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* 悬停：底色翻红、硬影变黄并加大，同时整体往左上提一点（影子和块分离） */
+/* 三支颜色轮转：红 → 蓝 → 黄 */
+.article-category a:nth-child(3n + 1),
+.article-tags a:nth-child(3n + 1),
+.tagCloud-tags a:nth-child(3n + 1) {
+  --chip: var(--chip-red);
+}
+
+.article-category a:nth-child(3n + 2),
+.article-tags a:nth-child(3n + 2),
+.tagCloud-tags a:nth-child(3n + 2) {
+  --chip: var(--chip-blue);
+}
+
+.article-category a:nth-child(3n),
+.article-tags a:nth-child(3n),
+.tagCloud-tags a:nth-child(3n) {
+  --chip: var(--chip-yellow);
+}
+
+/* 悬停：整块左上层起 2px，影子同步拉长到 6px，底色吃满描边色 —— 全程平移，无旋转 */
 .article-category a:hover,
 .article-tags a:hover,
 .tagCloud-tags a:hover,
 .article-tags a:focus-visible,
 .tagCloud-tags a:focus-visible {
-  background-color: var(--bh-red);
-  border-color: var(--bh-red);
+  background-color: var(--chip);
+  border-color: var(--chip);
   color: #fff;
-  transform: translate(-2px, -2px) rotate(-3deg) scale(1.02);
-  box-shadow: 6px 6px 0 0 var(--bh-yellow);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--chip);
   text-decoration: none;
 }
 
-/* 按下：整体压回，影子随之收短 */
+/* 按下：整块压回右下 1px，影子收短，像真的按进去 */
 .article-category a:active,
 .article-tags a:active,
 .tagCloud-tags a:active {
-  transform: translate(1px, 1px) rotate(0deg) scale(0.99);
-  box-shadow: 1px 1px 0 0 var(--bh-edge);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 0 var(--chip);
   transition-duration: 0.08s;
 }
 
