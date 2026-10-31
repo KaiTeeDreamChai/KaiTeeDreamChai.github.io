@@ -1,0 +1,24 @@
+{{ define "main" }}
+    {{- $paginator := partial "helper/paginator.html" . -}}
+
+    {{ if eq (len $paginator.Pages) 0 }}
+        <div class="archives-empty">
+            <p>这里还没有文章。</p>
+            <p class="archives-empty__hint">第一篇写好后会出现在这里；想先认识一下，去看 <a href="{{ "/about/" | relURL }}">关于</a>。</p>
+        </div>
+    {{ else }}
+        <section class="article-list">
+            {{ range $index, $element := $paginator.Pages }}
+                {{ partial "article-list/default" . }}
+            {{ end }}
+        </section>
+
+        {{- partial "pagination.html" . -}}
+    {{ end }}
+
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

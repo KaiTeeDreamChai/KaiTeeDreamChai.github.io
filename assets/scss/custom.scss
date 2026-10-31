@@ -286,3 +286,28 @@ body[data-scheme="dark"] {
   transform: translate(-2px, -2px);
   box-shadow: 8px 8px 0 0 var(--bh-edge);
 }
+
+/* ---------- 归档空状态 ---------- */
+.archives-empty {
+  border: 2px dashed var(--card-separator-color);
+  border-radius: 2px;
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--card-text-color-secondary);
+}
+
+.archives-empty p {
+  margin: 0;
+}
+
+.archives-empty__hint {
+  margin-top: 8px !important;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+/* ---------- 没有内容时隐藏空的分类/标签云组件（避免只剩一条色带） ---------- */
+/* 组件的容器本身就叫 .widget.tagCloud，所以不能用后代选择器 */
+.widget.tagCloud:not(:has(a)) {
+  display: none;
+}
