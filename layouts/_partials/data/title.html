@@ -1,0 +1,21 @@
+{{- /*
+  覆盖主题的页面标题规则：默认只输出页面标题，
+  这里改成「页面标题 - 站点名」，首页只输出站点名。
+*/ -}}
+{{- $pageTitle := .Title -}}
+{{- $siteTitle := .Site.Title -}}
+{{- $paginator := partial "helper/paginator.html" . -}}
+
+{{- $parts := slice -}}
+
+{{- if and $paginator $paginator.HasPrev -}}
+    {{- $parts = $parts | append (printf "第 %d 页" $paginator.PageNumber) -}}
+{{- end -}}
+
+{{- if and $pageTitle (ne $pageTitle $siteTitle) -}}
+    {{- $parts = $parts | append $pageTitle -}}
+{{- end -}}
+
+{{- $parts = $parts | append $siteTitle -}}
+
+{{ return delimit $parts " - " }}
