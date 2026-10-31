@@ -1,0 +1,207 @@
+/* ============================================================
+   PRESET B · 包豪斯（Bauhaus）
+   三原色 + 暖纸底色 + 硬阴影 + 几何圆点
+   灵动来自：硬阴影位移、色块高亮标题、标签轻微倾斜、圆环头像
+   ============================================================ */
+
+:root {
+  --base-font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --article-font-family: var(--base-font-family);
+  --code-font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* 包豪斯三原色 */
+  --bh-red: #d7263d;
+  --bh-blue: #1d4e89;
+  --bh-yellow: #f2b705;
+  --bh-ink: #14213d;
+
+  --accent-color: #d7263d;
+  --accent-color-darker: #b01d31;
+  --accent-color-text: #ffffff;
+
+  --body-background: #f6f3ec;
+  --card-background: #fffdf8;
+  --card-border-radius: 2px;
+  --card-text-color-main: #14213d;
+  --card-text-color-secondary: #4a5568;
+  --card-text-color-tertiary: #6b7280;
+  --card-separator-color: rgba(20, 33, 61, 0.16);
+}
+
+:root[data-scheme="dark"],
+body[data-scheme="dark"] {
+  --body-background: #10161f;
+  --card-background: #182030;
+  --accent-color: #ff5a6e;
+  --accent-color-darker: #ff8291;
+  --accent-color-text: #10161f;
+  --card-text-color-main: #f4f1e8;
+  --card-text-color-secondary: #b9c2cf;
+  --card-separator-color: rgba(244, 241, 232, 0.18);
+}
+
+/* ---------- 站名：红圆点前缀 ---------- */
+.site-name a {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.site-name a::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bh-red);
+  box-shadow: 7px -5px 0 0 var(--bh-yellow);
+  flex: 0 0 auto;
+  margin-right: 4px;
+}
+
+/* ---------- 菜单：悬停出现蓝底黄边 ---------- */
+.menu a {
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+  padding: 2px 6px;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.menu a:hover {
+  background: var(--bh-blue);
+  color: #fff;
+  box-shadow: 3px 3px 0 0 var(--bh-yellow);
+}
+
+/* ---------- 文章卡片：硬阴影位移 ---------- */
+.article-list article {
+  border: 2px solid var(--bh-ink);
+  border-radius: 2px;
+  box-shadow: 5px 5px 0 0 rgba(20, 33, 61, 0.9);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  background: var(--card-background);
+}
+
+.article-list article:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 0 var(--bh-blue);
+}
+
+/* ---------- 标题：黄底高亮块（像马克笔划过） ---------- */
+.article-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline;
+  background-image: linear-gradient(transparent 62%, rgba(242, 183, 5, 0.55) 62%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* 文章页大标题不做高亮块，避免整行发黄 */
+.article-page .article-title {
+  background: none;
+}
+
+/* ---------- 侧栏组件标题：三道色条 ---------- */
+.widget-title {
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding-bottom: 6px;
+  position: relative;
+}
+
+.widget-title::after {
+  content: "";
+  display: block;
+  margin-top: 8px;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    var(--bh-red) 0 33%,
+    var(--bh-yellow) 33% 66%,
+    var(--bh-blue) 66% 100%
+  );
+}
+
+/* ---------- 分类/标签：胶囊 + 弹簧式抬起 ---------- */
+.article-category a,
+.article-tags a,
+.tagCloud-tags a {
+  border-radius: 999px;
+  border: 1.5px solid var(--bh-ink);
+  padding: 2px 10px;
+  font-size: 0.8em;
+  background: transparent;
+  color: var(--card-text-color-main);
+  display: inline-block;
+  transform-origin: center bottom;
+  backface-visibility: hidden;
+  will-change: transform;
+  /* 颜色用短缓动，位移/旋转用带回弹的曲线，观感才“活” */
+  transition:
+    background-color 0.16s ease,
+    color 0.16s ease,
+    border-color 0.16s ease,
+    box-shadow 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.article-category a:hover,
+.article-tags a:hover,
+.tagCloud-tags a:hover,
+.article-tags a:focus-visible,
+.tagCloud-tags a:focus-visible {
+  background: var(--bh-red);
+  border-color: var(--bh-red);
+  color: #fff;
+  /* 先弹起来、稍微放大、带一点倾斜；黄影错位让“抬起”有实体感 */
+  transform: rotate(-4deg) translateY(-3px) scale(1.05);
+  box-shadow: 3px 4px 0 0 var(--bh-yellow);
+  text-decoration: none;
+}
+
+/* 按下时再压回去，像真的按了一下 */
+.article-category a:active,
+.article-tags a:active,
+.tagCloud-tags a:active {
+  transform: rotate(0deg) translateY(0) scale(0.97);
+  box-shadow: 1px 1px 0 0 var(--bh-blue);
+  transition-duration: 0.08s;
+}
+
+/* ---------- 头像：双色圆环 ---------- */
+.site-avatar img {
+  border-radius: 50%;
+  border: 3px solid var(--bh-blue);
+  box-shadow: 4px 4px 0 0 var(--bh-yellow);
+}
+
+/* ---------- 正文 ---------- */
+.article-content {
+  line-height: 1.85;
+}
+
+.article-content a {
+  text-decoration: none;
+  border-bottom: 2px solid rgba(215, 38, 61, 0.45);
+}
+
+.article-content a:hover {
+  border-bottom-color: var(--bh-red);
+}
+
+.article-content h2 {
+  border-left: 6px solid var(--bh-blue);
+  padding-left: 10px;
+}
+
+/* ---------- 代码块：直角 + 细边 ---------- */
+.article-content pre,
+.article-content .chroma {
+  border-radius: 2px;
+  border: 1.5px solid var(--card-separator-color);
+}

@@ -1,0 +1,176 @@
+/* ============================================================
+   PRESET A · 瑞士国际主义（Swiss / International Style）
+   网格、发丝线、Helvetica 系字族、瑞士红作为唯一强调色
+   灵动来自：下划线生长动画、发丝线转实线、卡片左侧红条展开
+   ============================================================ */
+
+:root {
+  --base-font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --article-font-family: var(--base-font-family);
+  --code-font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+
+  --accent-color: #e5341f;
+  --accent-color-darker: #b8290f;
+  --accent-color-text: #ffffff;
+
+  --body-background: #ffffff;
+  --card-background: #ffffff;
+  --card-border-radius: 0px;
+  --card-text-color-main: #111111;
+  --card-text-color-secondary: #555555;
+  --card-text-color-tertiary: #8a8a8a;
+  --card-separator-color: rgba(17, 17, 17, 0.12);
+}
+
+:root[data-scheme="dark"],
+body[data-scheme="dark"] {
+  --body-background: #111111;
+  --card-background: #111111;
+  --accent-color: #ff5c3f;
+  --accent-color-darker: #ff8165;
+  --accent-color-text: #111111;
+  --card-text-color-main: #f2f2f2;
+  --card-text-color-secondary: #a8a8a8;
+  --card-separator-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ---------- 站名：黑体大字号 + 红色方块前缀 ---------- */
+.site-name a {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-name a::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: var(--accent-color);
+  flex: 0 0 auto;
+}
+
+/* ---------- 菜单：细字距 + 从左生长的下划线 ---------- */
+.menu a {
+  letter-spacing: 0.06em;
+  position: relative;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease;
+}
+
+.menu a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- 文章卡片：发丝线 + 左侧红条展开 ---------- */
+.article-list article {
+  border: 1px solid var(--card-separator-color);
+  border-radius: 0;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.article-list article::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent-color);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.25s ease;
+}
+
+.article-list article:hover {
+  border-color: var(--card-text-color-main);
+  transform: translateY(-1px);
+}
+
+.article-list article:hover::before {
+  transform: scaleY(1);
+}
+
+/* ---------- 标题：紧字距、粗字重 ---------- */
+.article-title {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* ---------- 元信息：短横线 + 等宽数字 ---------- */
+.article-meta {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- 分类/标签：方形、发丝线、悬停反色 ---------- */
+.article-category a,
+.article-tags a,
+.tagCloud-tags a {
+  border-radius: 0;
+  border: 1px solid var(--card-separator-color);
+  background: transparent;
+  color: var(--card-text-color-main);
+  padding: 2px 8px;
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.article-tags a:hover,
+.tagCloud-tags a:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--accent-color-text);
+}
+
+/* ---------- 侧栏组件标题：短横线 + 大写间距 ---------- */
+.widget-title {
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--card-separator-color);
+}
+
+/* ---------- 正文：行高、链接下划线偏红 ---------- */
+.article-content {
+  line-height: 1.85;
+}
+
+.article-content a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(229, 52, 31, 0.4);
+}
+
+.article-content a:hover {
+  border-bottom-color: var(--accent-color);
+}
+
+/* ---------- 代码块：直角、无阴影 ---------- */
+.article-content pre,
+.article-content .chroma {
+  border-radius: 0;
+  border: 1px solid var(--card-separator-color);
+}
+
+/* ---------- 头像：方形（瑞士风格的几何克制） ---------- */
+.site-avatar img {
+  border-radius: 0;
+}

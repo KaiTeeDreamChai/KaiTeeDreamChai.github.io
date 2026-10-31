@@ -9,9 +9,12 @@ rssFullContent = true
     published   = ":date_full"
     lastUpdated = ":date_full"
 
+# 网站图标（放在 assets/img/ 下；必须在任何 [table] 之前，否则会被归进上一张表）
+favicon = "img/favicon.png"
+
 [sidebar]
     compact = false
-    avatar  = ""
+    avatar  = "img/avatar.jpg"
 
 [article]
     headingAnchor = true
