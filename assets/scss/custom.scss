@@ -21,6 +21,7 @@
   --chip-red: #d7263d;
   --chip-blue: #1d4e89;
   --chip-yellow: #cf9b00;
+  --chip-shadow: #14213d;
 
   --accent-color: #d7263d;
   --accent-color-darker: #b01d31;
@@ -51,7 +52,9 @@ body[data-scheme="dark"] {
   --bh-edge: #2f6fb8;
   --chip-red: #ff5a6e;
   --chip-blue: #4c8bd8;
+  --bh-edge: #4c8bd8;
   --chip-yellow: #f2b705;
+  --chip-shadow: #8e99ab;
 }
 
 /* ---------- 站名：红圆点前缀 ---------- */
@@ -140,10 +143,13 @@ body[data-scheme="dark"] {
   );
 }
 
-/* ---------- 分类/标签：多色描边 + 错位硬影，纯平移，不旋转 ---------- */
+/* ---------- 分类/标签：多色描边 + 蓝色错位硬影，纯平移，不旋转 ----------
+   描边颜色三色轮转（--chip），硬影固定用蓝色（--bh-edge），
+   这样影子和描边是两种颜色，错位才看得出来。
+   ------------------------------------------------------------------ */
 .article-category a,
 .article-tags a,
-.tagCloud-tags a {
+.tagCloud .tagCloud-tags a {
   --chip: var(--bh-ink);
 
   border-radius: 999px;
@@ -154,7 +160,7 @@ body[data-scheme="dark"] {
   background-color: var(--card-background);
   color: var(--card-text-color-main);
   display: inline-block;
-  box-shadow: 3px 3px 0 0 var(--chip);
+  box-shadow: 4px 4px 0 0 var(--chip-shadow);
   backface-visibility: hidden;
   will-change: transform, box-shadow;
   transition:
@@ -165,45 +171,43 @@ body[data-scheme="dark"] {
     transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* 三支颜色轮转：红 → 蓝 → 黄 */
 .article-category a:nth-child(3n + 1),
 .article-tags a:nth-child(3n + 1),
-.tagCloud-tags a:nth-child(3n + 1) {
+.tagCloud .tagCloud-tags a:nth-child(3n + 1) {
   --chip: var(--chip-red);
 }
 
 .article-category a:nth-child(3n + 2),
 .article-tags a:nth-child(3n + 2),
-.tagCloud-tags a:nth-child(3n + 2) {
+.tagCloud .tagCloud-tags a:nth-child(3n + 2) {
   --chip: var(--chip-blue);
 }
 
 .article-category a:nth-child(3n),
 .article-tags a:nth-child(3n),
-.tagCloud-tags a:nth-child(3n) {
+.tagCloud .tagCloud-tags a:nth-child(3n) {
   --chip: var(--chip-yellow);
 }
 
-/* 悬停：整块左上层起 2px，影子同步拉长到 6px，底色吃满描边色 —— 全程平移，无旋转 */
+/* 悬停：整块左上层起，蓝影拉开 —— 全程平移，无旋转 */
 .article-category a:hover,
 .article-tags a:hover,
-.tagCloud-tags a:hover,
+.tagCloud .tagCloud-tags a:hover,
 .article-tags a:focus-visible,
-.tagCloud-tags a:focus-visible {
+.tagCloud .tagCloud-tags a:focus-visible {
   background-color: var(--chip);
   border-color: var(--chip);
   color: #fff;
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 0 var(--chip);
+  box-shadow: 7px 7px 0 0 var(--chip-shadow);
   text-decoration: none;
 }
 
-/* 按下：整块压回右下 1px，影子收短，像真的按进去 */
 .article-category a:active,
 .article-tags a:active,
-.tagCloud-tags a:active {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0 0 var(--chip);
+.tagCloud .tagCloud-tags a:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--chip-shadow);
   transition-duration: 0.08s;
 }
 
