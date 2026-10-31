@@ -1,0 +1,17 @@
+# Hugo 构建产物
+public/
+resources/_gen/
+.hugo_build.lock
+
+# 编辑器与系统
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# 本地环境
+.env
+.hugo_new_site
+
+# 主题的体积大户（字体已随主题提交，这里仅忽略测试缓存）
+themes/*/node_modules/

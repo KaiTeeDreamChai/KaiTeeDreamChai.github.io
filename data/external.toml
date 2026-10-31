@@ -1,0 +1,7 @@
+# 覆盖主题的 CDN 依赖：KaTeX 改为本地自托管（static/vendor/katex）
+# 好处：不依赖境外 CDN，首屏更快、国内网络更稳
+KaTeX = [
+    { src = "/vendor/katex/katex.min.css", type = "style" },
+    { src = "/vendor/katex/katex.min.js", type = "script", defer = true },
+    { src = "/vendor/katex/auto-render.min.js", type = "script", defer = true },
+]

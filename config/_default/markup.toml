@@ -1,0 +1,26 @@
+# Markdown 渲染配置
+[goldmark.renderer]
+    unsafe = true
+
+# 数学公式：$...$ 行内、$$...$$ 独立成块，交给主题的 KaTeX 处理
+[goldmark.extensions.passthrough]
+    enable = true
+
+    [goldmark.extensions.passthrough.delimiters]
+        block  = [['$$', '$$'], ['\[', '\]']]
+        inline = [['$', '$'], ['\(', '\)']]
+
+[tableOfContents]
+    startLevel = 2
+    endLevel   = 4
+    # 标题里已经自带「一、」「1.」编号，TOC 不再自动加序号，避免双重编号
+    ordered    = false
+
+# 代码高亮（Chroma，构建期生成，产物不依赖 JS）
+[highlight]
+    codeFences         = true
+    guessSyntax        = true
+    lineNos            = true
+    lineNumbersInTable = true
+    noClasses          = false
+    tabWidth           = 4

@@ -1,0 +1,73 @@
+mainSections   = ["post"]
+rssFullContent = true
+
+[footer]
+    since      = 2025
+    customText = ""
+
+[dateFormat]
+    published   = ":date_full"
+    lastUpdated = ":date_full"
+
+[sidebar]
+    compact = false
+    avatar  = ""
+
+[article]
+    headingAnchor = true
+    # 打开后按需加载 KaTeX（只有含公式的文章才会请求）
+    math          = true
+    toc           = true
+    readingTime   = true
+
+    [article.list]
+        showTags = true
+
+    [article.license]
+        enabled = false
+        default = "Licensed under CC BY-NC-SA 4.0"
+
+# 侧栏小组件（Stack v4 要求写成对象：type = 组件名，params 可选）
+# 可用 type：search / archives / categories / tag-cloud / taxonomy / toc
+[widgets]
+    homepage = [
+        { type = "search" },
+        { type = "categories" },
+        { type = "tag-cloud" },
+    ]
+    page = [
+        { type = "toc", params = { title = "目录" } },
+    ]
+
+[colorScheme]
+    toggle  = true
+    default = "auto"
+
+[comments]
+    # 目前未接评论服务；想接 giscus 时改 enabled = true 并填 [comments.giscus]
+    enabled  = false
+    provider = "giscus"
+
+    [comments.giscus]
+        repo             = ""
+        repoID           = ""
+        category         = ""
+        categoryID       = ""
+        mapping          = "pathname"
+        lightTheme       = "light"
+        darkTheme        = "dark_dimmed"
+        reactionsEnabled = 1
+        emitMetadata     = 0
+        inputPosition    = "top"
+        lang             = "zh-CN"
+        loading          = "lazy"
+
+[imageProcessing]
+    autoOrient = false
+
+    [imageProcessing.content]
+        widths  = [800, 1600, 2400]
+        enabled = true
+
+    [imageProcessing.thumbnail]
+        enabled = true

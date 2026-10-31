@@ -1,0 +1,29 @@
+# 站点基础配置 — Hugo Theme Stack
+# 部署后改 baseurl 为最终域名（带结尾斜杠）
+baseurl = "https://kaiteedreamchai.github.io/"
+title   = "92ch41的部落阁"
+locale  = "zh-CN"
+
+# 主题放在 themes/ 下（未使用 Hugo Modules）
+theme = "hugo-theme-stack"
+
+defaultContentLanguage = "zh"
+
+# 中文分词：让 .Summary / .WordCount / 阅读时长统计正确
+hasCJKLanguage = true
+
+[pagination]
+    pagerSize = 6
+
+[services]
+    [services.rss]
+        limit = 20
+
+[markup.goldmark.parser]
+    # 允许正文中的原始 HTML
+    unsafe = true
+    autoHeadingIDType = "github"
+
+[outputs]
+    home    = ["html", "rss"]
+    section = ["html", "rss"]

@@ -1,0 +1,54 @@
+# 顶部主菜单
+[[main]]
+    identifier = "home"
+    name       = "首页"
+    url        = "/"
+    weight     = 1
+    [main.params]
+        icon = "home"
+
+[[main]]
+    identifier = "archives"
+    name       = "归档"
+    url        = "/archives/"
+    weight     = 2
+    [main.params]
+        icon = "archives"
+
+[[main]]
+    identifier = "search"
+    name       = "搜索"
+    url        = "/search/"
+    weight     = 3
+    [main.params]
+        icon = "search"
+
+[[main]]
+    identifier = "about"
+    name       = "关于"
+    url        = "/about/"
+    weight     = 4
+    [main.params]
+        icon = "user"
+
+# 侧栏社交链接
+[[social]]
+    identifier = "github"
+    name       = "GitHub"
+    url        = "https://github.com/KaiTeeDreamChai"
+    [social.params]
+        icon = "brand-github"
+
+[[social]]
+    identifier = "telegram"
+    name       = "Telegram"
+    url        = "https://t.me/dr34m_ch41"
+    [social.params]
+        icon = "messages"
+
+[[social]]
+    identifier = "mail"
+    name       = "Email"
+    url        = "mailto:ktdc.uscp@gmail.com"
+    [social.params]
+        icon = "link"

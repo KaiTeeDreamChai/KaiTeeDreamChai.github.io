@@ -1,0 +1,3 @@
+# 保持旧的 Hexo 链接风格：/YYYY/MM/DD/slug/
+post = "/:year/:month/:day/:slug/"
+page = "/:slug/"
