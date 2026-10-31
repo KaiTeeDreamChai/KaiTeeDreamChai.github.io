@@ -85,10 +85,18 @@ body[data-scheme="dark"] {
   transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
 }
 
-.menu a:hover {
+/* 主题用 #main-menu li a（带 id，weight 高于 .menu a），
+   所以这里必须同样带 #main-menu 才压得住文字颜色，否则白字变灰字 */
+#main-menu li a:hover,
+#main-menu li a:focus-visible {
   background: var(--bh-blue);
   color: #fff;
   box-shadow: 3px 3px 0 0 var(--bh-yellow);
+}
+
+#main-menu li a:hover svg,
+#main-menu li a:focus-visible svg {
+  stroke: #fff;
 }
 
 /* ---------- 文章卡片：硬阴影位移 ---------- */
