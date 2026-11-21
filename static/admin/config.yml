@@ -14,6 +14,13 @@ locale: zh_Hans
 media_folder: ""
 public_folder: ""
 
+# 上传的图片自动规范文件名（去空格、转小写连字符），并限制体积
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      max_file_size: 8000000
+
 collections:
   # ---------- 文章 ----------
   - name: posts
@@ -42,8 +49,9 @@ collections:
           name: slug,
           label: 链接（slug）,
           widget: string,
-          required: false,
-          hint: 留空则用目录名；只用英文和连字符,
+          required: true,
+          pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', '只能用小写英文字母、数字和连字符，例：gaokao-physics-notes'],
+          hint: 决定文章网址，发布后别改；只用小写英文/数字/连字符,
         }
       - {
           name: categories,
