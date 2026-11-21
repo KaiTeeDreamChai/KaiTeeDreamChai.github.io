@@ -20,6 +20,12 @@ media_libraries:
     config:
       slugify_filename: true
       max_file_size: 8000000
+      # 上传的位图统一转 WebP：体积更稳，Hugo 原生支持
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2048
 
 collections:
   # ---------- 文章 ----------
