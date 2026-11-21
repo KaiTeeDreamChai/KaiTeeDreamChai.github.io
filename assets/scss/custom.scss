@@ -311,3 +311,21 @@ body[data-scheme="dark"] {
 .widget.tagCloud:not(:has(a)) {
   display: none;
 }
+
+/* ---------- 深色模式下的分类胶囊 ----------
+   主题会按分类名生成内联的高亮底色（如浅绿 #beefc3 + 深绿字），
+   在深色界面上过亮、和包豪斯三原色打架。这里用 !important 盖掉内联样式，
+   改成「同色系低饱和底 + 亮字」，保留每个分类的色相但压低明度。
+   ------------------------------------------------------------------ */
+:root[data-scheme="dark"] .article-category a,
+body[data-scheme="dark"] .article-category a {
+  background-color: color-mix(in srgb, var(--chip) 16%, transparent) !important;
+  color: color-mix(in srgb, var(--chip) 40%, #ffffff) !important;
+}
+
+/* 悬停时底色吃满，文字改用深色（亮色底上白字对比度不够） */
+:root[data-scheme="dark"] .article-category a:hover,
+body[data-scheme="dark"] .article-category a:hover {
+  background-color: var(--chip) !important;
+  color: #10161f !important;
+}
