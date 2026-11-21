@@ -3,7 +3,7 @@ title: fuck elon musk
 description: ''
 date: 2026-11-21
 lastmod: 2026-11-21
-slug: ''
+slug: fuck-elon-musk
 categories:
   - 闲杂
 tags: []
