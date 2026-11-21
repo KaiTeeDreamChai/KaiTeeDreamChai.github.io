@@ -1,0 +1,86 @@
+# Sveltia CMS 配置 · 92ch41的部落阁
+# 文档：https://sveltiacms.app/en/docs/
+
+backend:
+  name: github
+  repo: KaiTeeDreamChai/KaiTeeDreamChai.github.io
+  branch: master
+
+# 站点语言（后台界面）
+locale: zh_Hans
+
+# 媒体文件默认放在条目自己的目录里（Hugo page bundle），
+# 所以这里留空，由 collection 的 media_folder/public_folder 决定
+media_folder: ""
+public_folder: ""
+
+collections:
+  # ---------- 文章 ----------
+  - name: posts
+    label: 文章
+    label_singular: 文章
+    folder: content/post
+    path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} · {{date | date('YYYY-MM-DD')}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: 标题, widget: string }
+      - {
+          name: description,
+          label: 摘要,
+          widget: string,
+          required: false,
+          hint: 列表卡片和搜索结果里会显示这一句,
+        }
+      - { name: date, label: 日期, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - { name: lastmod, label: 最后修改, widget: datetime, required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - {
+          name: slug,
+          label: 链接（slug）,
+          widget: string,
+          required: false,
+          hint: 留空则用目录名；只用英文和连字符,
+        }
+      - {
+          name: categories,
+          label: 分类,
+          widget: list,
+          required: false,
+          hint: 例：物理,
+        }
+      - {
+          name: tags,
+          label: 标签,
+          widget: list,
+          required: false,
+          hint: 例：高中物理 / 电场,
+        }
+      - {
+          name: draft,
+          label: 草稿,
+          widget: boolean,
+          default: false,
+          hint: 勾上就不会发布,
+        }
+      - { name: body, label: 正文, widget: markdown }
+
+  # ---------- 页面 ----------
+  - name: pages
+    label: 页面
+    label_singular: 页面
+    folder: content/page
+    path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
+    create: false
+    fields:
+      - { name: title, label: 标题, widget: string }
+      - { name: slug, label: 链接（slug）, widget: string, required: false }
+      - { name: date, label: 日期, widget: datetime, required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - { name: lastmod, label: 最后修改, widget: datetime, required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - { name: description, label: 摘要, widget: string, required: false }
+      - { name: body, label: 正文, widget: markdown }

@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://kaiteedreamchai.github.io/sitemap.xml
+
+# 后台不进搜索引擎
+Disallow: /admin/
